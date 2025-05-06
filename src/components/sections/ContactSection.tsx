@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -5,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import AnimatedSection from "../AnimatedSection";
 import { Facebook, Instagram, Youtube, X } from "lucide-react";
+import { toast } from "sonner";
 
 const ContactSection = () => {
   const [formState, setFormState] = useState({
@@ -13,6 +15,7 @@ const ContactSection = () => {
     service: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -27,9 +30,21 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would handle the form submission here
-    alert("Merci pour votre message ! Je vous répondrai dans les plus brefs délais.");
-    setFormState({ name: "", email: "", service: "", message: "" });
+    setIsSubmitting(true);
+    
+    // Simulation d'envoi d'email
+    setTimeout(() => {
+      // En production, nous utiliserions ici un service d'envoi d'email
+      console.log("Email qui serait envoyé à: emmatechdesign@gmail.com");
+      console.log("Contenu:", formState);
+      
+      toast.success("Votre demande a été envoyée avec succès! Nous vous répondrons bientôt.", {
+        duration: 5000,
+      });
+      
+      setFormState({ name: "", email: "", service: "", message: "" });
+      setIsSubmitting(false);
+    }, 1500);
   };
 
   return (
@@ -81,10 +96,10 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-semibold text-emma-darkblue">Email</h4>
                     <a 
-                      href="mailto:contact@emmatechdesign.com" 
+                      href="mailto:emmatechdesign@gmail.com" 
                       className="text-emma-blue hover:underline"
                     >
-                      contact@emmatechdesign.com
+                      emmatechdesign@gmail.com
                     </a>
                   </div>
                 </li>
@@ -252,9 +267,23 @@ const ContactSection = () => {
                 <Button 
                   type="submit" 
                   className="w-full bg-emma-blue hover:bg-emma-darkblue text-white"
+                  disabled={isSubmitting}
                 >
-                  Envoyer ma demande
+                  {isSubmitting ? (
+                    <span className="flex items-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Envoi en cours...
+                    </span>
+                  ) : (
+                    "Envoyer ma demande"
+                  )}
                 </Button>
+                <p className="text-sm text-gray-500 text-center mt-4">
+                  Les devis seront envoyés à votre email: emmatechdesign@gmail.com
+                </p>
               </div>
             </form>
           </div>

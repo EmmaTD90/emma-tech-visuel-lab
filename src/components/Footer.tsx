@@ -65,8 +65,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:contact@emmatechdesign.com" className="hover:text-emma-gold transition-colors">
-                  contact@emmatechdesign.com
+                <a href="mailto:emmatechdesign@gmail.com" className="hover:text-emma-gold transition-colors">
+                  emmatechdesign@gmail.com
                 </a>
               </li>
               <li>Bénin</li>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedSection from "../AnimatedSection";
+import { toast } from "sonner";
 
 const TestimonialsSection = () => {
   const [name, setName] = useState("");
@@ -13,30 +14,32 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Marie K.",
-      text: "J'ai adoré la carte d'anniversaire que Charbel m'a conçue. Rapide et stylé !",
+      name: "Marie Kouassi",
+      text: "J'ai adoré la carte d'anniversaire que Emma Tech m'a conçue. Rapide et stylé, avec une touche vraiment africaine!",
       rating: 5,
-      image: "/public/placeholder.svg",
+      image: "https://randomuser.me/api/portraits/women/23.jpg",
     },
     {
       id: 2,
-      name: "Pascal D.",
-      text: "Emma Tech Design a créé tout mon branding ! Je recommande vivement.",
+      name: "Pascal Diallo",
+      text: "Emma Tech Design a créé tout mon branding ! Le résultat est parfaitement adapté au marché africain. Je recommande vivement.",
       rating: 5,
-      image: "/public/placeholder.svg",
+      image: "https://randomuser.me/api/portraits/men/55.jpg",
     },
     {
       id: 3,
-      name: "Société ABC",
-      text: "Nous avons collaboré pour la création de notre logo et site web. Très professionnel et à l'écoute !",
+      name: "Société Bénin Business",
+      text: "Nous avons collaboré pour la création de notre logo et site web. Très professionnel et à l'écoute des spécificités locales !",
       rating: 4,
-      image: "/public/placeholder.svg",
+      image: "https://randomuser.me/api/portraits/men/22.jpg",
     },
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Merci pour votre témoignage ! Il sera examiné avant publication.");
+    toast.success("Merci pour votre témoignage ! Il sera examiné avant publication.", {
+      duration: 5000,
+    });
     setName("");
     setComment("");
     setRating(5);
@@ -60,7 +63,7 @@ const TestimonialsSection = () => {
             <div key={testimonial.id} className="animate-on-scroll">
               <div className="bg-white p-6 rounded-lg shadow-md h-full flex flex-col">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <div className="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-emma-gold">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
@@ -163,6 +166,9 @@ const TestimonialsSection = () => {
               Envoyer mon témoignage
             </Button>
           </form>
+          <p className="text-sm text-gray-500 text-center mt-4">
+            Tous les témoignages sont examinés avant publication. Merci pour votre contribution!
+          </p>
         </div>
       </AnimatedSection>
     </section>
