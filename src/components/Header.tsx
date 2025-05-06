@@ -40,8 +40,12 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="font-montserrat text-emma-darkblue font-bold text-xl md:text-2xl">
-            Emma Tech <span className="text-emma-teal">Design</span>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/4f19c9c7-969f-45f6-879d-bde0513fd76d.png" 
+              alt="Emma Tech Design Logo" 
+              className="h-12 md:h-14"
+            />
           </Link>
         </div>
 
