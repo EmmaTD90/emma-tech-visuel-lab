@@ -34,8 +34,8 @@ const HeroSection = () => {
           <div className="relative animate-scale-in">
             <div className="relative z-20 rounded-lg shadow-2xl overflow-hidden bg-gradient-to-br from-emma-blue/10 to-emma-teal/10 p-6">
               <img
-                src="/placeholder.svg"
-                alt="Emma Tech Design showcase"
+                src="/lovable-uploads/ff47ade9-a4ef-4960-b63a-ba2cb8916e1f.png"
+                alt="Mini Portfolio Emma Tech Design"
                 className="w-full h-auto rounded-lg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-emma-darkblue/40 to-transparent rounded-lg flex items-end p-6">
