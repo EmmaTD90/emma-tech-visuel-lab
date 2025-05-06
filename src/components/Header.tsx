@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,9 +16,27 @@ const Header = () => {
         setIsScrolled(false);
       }
     };
+    
+    const handleScrollSpy = () => {
+      const sections = document.querySelectorAll("section[id]");
+      
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          setActiveLink(`#${section.id}`);
+        }
+      });
+    };
+    
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScrollSpy);
+    
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScrollSpy);
     };
   }, []);
 
@@ -44,7 +63,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/4f19c9c7-969f-45f6-879d-bde0513fd76d.png" 
               alt="Emma Tech Design Logo" 
-              className="h-12 md:h-14"
+              className="h-12 md:h-14 hover:scale-105 transition-transform duration-300"
             />
           </Link>
         </div>
@@ -55,8 +74,12 @@ const Header = () => {
             <a
               key={link.name}
               href={link.href}
-              className={`font-medium transition-colors hover:text-emma-blue ${
-                isScrolled ? "text-emma-darkblue" : "text-emma-darkblue"
+              className={`font-medium transition-all duration-300 hover:text-emma-blue relative ${
+                activeLink === link.href ? "text-emma-blue" : isScrolled ? "text-emma-darkblue" : "text-emma-darkblue"
+              } ${
+                activeLink === link.href 
+                  ? "after:content-[''] after:absolute after:left-0 after:bottom-[-5px] after:h-0.5 after:w-full after:bg-emma-blue" 
+                  : ""
               }`}
             >
               {link.name}
@@ -64,7 +87,7 @@ const Header = () => {
           ))}
           <Button
             asChild
-            className="bg-emma-blue hover:bg-emma-darkblue text-white"
+            className="bg-emma-blue hover:bg-emma-darkblue text-white transition-transform duration-300 hover:scale-105"
           >
             <a href="#contact">Demander un devis</a>
           </Button>
@@ -87,6 +110,7 @@ const Header = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="transition-transform duration-300 rotate-90"
             >
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -111,15 +135,17 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation with Animation */}
       {isMobileMenuOpen && (
-        <nav className="md:hidden bg-white shadow-lg">
+        <nav className="md:hidden bg-white shadow-lg animate-fade-in">
           <div className="flex flex-col py-4">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="py-2 px-6 text-emma-darkblue hover:bg-gray-100"
+                className={`py-2 px-6 hover:bg-gray-100 transition-colors duration-300 ${
+                  activeLink === link.href ? "text-emma-blue border-l-4 border-emma-blue" : "text-emma-darkblue"
+                }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
@@ -128,7 +154,7 @@ const Header = () => {
             <div className="px-6 pt-3">
               <Button
                 asChild
-                className="w-full bg-emma-blue hover:bg-emma-darkblue text-white"
+                className="w-full bg-emma-blue hover:bg-emma-darkblue text-white transition-all duration-300"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <a href="#contact">Demander un devis</a>
