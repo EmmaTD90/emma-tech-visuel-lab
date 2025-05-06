@@ -21,8 +21,10 @@ const Header = () => {
       const sections = document.querySelectorAll("section[id]");
       
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionBottom = sectionTop + section.offsetHeight;
+        // Properly cast the element to HTMLElement to access offsetTop and offsetHeight
+        const htmlSection = section as HTMLElement;
+        const sectionTop = htmlSection.offsetTop - 100;
+        const sectionBottom = sectionTop + htmlSection.offsetHeight;
         const scrollPosition = window.scrollY;
         
         if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
