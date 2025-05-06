@@ -1,18 +1,12 @@
 
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-28 overflow-hidden bg-gradient-to-br from-gray-50 to-emma-gray">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:text-left"
-          >
+          <div className="text-center lg:text-left animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-emma-darkblue">
               Donnez vie à vos idées avec{" "}
               <span className="gradient-text">Emma Tech Design!</span>
@@ -35,17 +29,12 @@ const HeroSection = () => {
                 <a href="#contact">Commandez un service</a>
               </Button>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
+          <div className="relative animate-scale-in">
             <div className="relative z-20 rounded-lg shadow-2xl overflow-hidden bg-gradient-to-br from-emma-blue/10 to-emma-teal/10 p-6">
               <img
-                src="/public/placeholder.svg"
+                src="/placeholder.svg"
                 alt="Emma Tech Design showcase"
                 className="w-full h-auto rounded-lg"
               />
@@ -59,7 +48,7 @@ const HeroSection = () => {
             {/* Decorative Elements */}
             <div className="absolute -top-10 -right-10 w-20 h-20 bg-emma-teal/20 rounded-full blur-xl"></div>
             <div className="absolute -bottom-5 -left-5 w-16 h-16 bg-emma-gold/30 rounded-full blur-lg"></div>
-          </motion.div>
+          </div>
         </div>
       </div>
 

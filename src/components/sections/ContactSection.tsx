@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import AnimatedSection from "../AnimatedSection";
-import { Facebook, Instagram, Youtube, X, TikTok } from "lucide-react";
+import { Facebook, Instagram, Youtube, X } from "lucide-react";
 
 const ContactSection = () => {
   const [formState, setFormState] = useState({
@@ -143,7 +142,13 @@ const ContactSection = () => {
                   className="bg-emma-blue text-white p-3 rounded-full hover:bg-emma-darkblue transition-colors"
                   aria-label="TikTok"
                 >
-                  <TikTok size={20} />
+                  {/* Custom TikTok icon */}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                    <path d="M15 8h.01"/>
+                    <path d="M20 10V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v17"/>
+                    <path d="M14 10.3V17a5 5 0 0 1-5 5h0a5 5 0 0 1-5-5v0a5 5 0 0 1 5-5"/>
+                  </svg>
                 </a>
                 <a 
                   href="https://x.com/@EmmanuelTD2005" 
