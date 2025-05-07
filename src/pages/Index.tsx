@@ -14,6 +14,9 @@ const Index = () => {
   useEffect(() => {
     // Scroll to top when page loads
     window.scrollTo(0, 0);
+    
+    // Initialize any additional scripts if needed
+    console.log("Portfolio page initialized with updated images");
   }, []);
 
   return (
